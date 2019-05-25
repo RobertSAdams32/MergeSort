@@ -10,18 +10,32 @@ function split(wholeArr) {
 
 function merge(arrOne, arrTwo) {
   let combinedArr = [];
-  for (let i = 0; i < arrOne.length; i++) {
-    if (arrOne[i] < arrTwo[i]) {
-      combinedArr.push(arrOne[i], arrTwo[i]);
+  arrOne.length > arrTwo.length
+    ? (length = arrOne.length)
+    : (length = arrTwo.length);
+  let j = 0;
+  let i = 0;
+  while (arrOne[i] !== undefined || arrTwo[j] !== undefined) {
+    if (arrOne[i] === undefined) {
+      combinedArr.push(...arrTwo.slice(j));
+      break;
+    }
+    if (arrTwo[j] === undefined) {
+      combinedArr.push(...arrOne.slice(i));
+      break;
+    }
+    if (arrOne[i] < arrTwo[j]) {
+      combinedArr.push(arrOne[i]);
+      i++;
+    } else if (arrOne[i] > arrTwo[j]) {
+      combinedArr.push(arrTwo[j]);
+      j++;
     } else {
-      combinedArr.push(arrTwo[i], arrOne[i]);
+      combinedArr.push(arrOne[i], arrTwo[j]);
+      i++;
+      j++;
     }
   }
-  // if (arrOne[0] < arrTwo[0]) {
-  //   combinedArr = arrOne.concat(arrTwo);
-  // } else {
-  //   combinedArr = arrTwo.concat(arrOne);
-  // }
   return combinedArr;
 }
 
@@ -30,16 +44,6 @@ function mergeSort(arr) {
     return arr;
   } else {
     const [firstHalf, secondHalf] = split(arr);
-    merged2 = merge(mergeSort(firstHalf), mergeSort(secondHalf));
-    return merged2;
-    // merged1 = mergeSort(firstHalf);
-    // // console.log('merged1', merged1);
-
-    // console.log('merged1', merged1, 'merged2', merged2);
-    // if (merged1[0] > merged2[0]) {
-    //   return merge(merged2, merged1);
-    // } else {
-    //   return merge(merged1, merged2);
-    // }
+    return merge(mergeSort(firstHalf), mergeSort(secondHalf));
   }
 }

@@ -7,11 +7,20 @@ describe('Split Array function', function() {
   });
 });
 
-// describe('Merge Function', function() {
-//   it('it is able to merge two sorted array into one sorted array', function() {
-//     expect(merge([1, 2, 3], [4, 5, 6, 7])).toEqual([1, 2, 3, 4, 5, 6, 7]);
-//   });
-// });
+describe('Merge Function', function() {
+  it('it is able to merge two sorted array into one sorted array', function() {
+    expect(merge([2, 9, 12, 14], [3, 4, 10, 11])).toEqual([
+      2,
+      3,
+      4,
+      9,
+      10,
+      11,
+      12,
+      14,
+    ]);
+  });
+});
 
 describe('Merge Sort Function', function() {
   it('is able to sort an array of values using merge', function() {
@@ -31,6 +40,7 @@ describe('Merge Sort Function', function() {
         17,
         14,
         16,
+        6,
         5,
         8,
         2,
@@ -44,6 +54,7 @@ describe('Merge Sort Function', function() {
       3,
       4,
       5,
+      6,
       6,
       7,
       8,
